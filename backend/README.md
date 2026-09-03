@@ -6,6 +6,15 @@ If you want to learn more about Quarkus, please visit its website: <https://quar
 
 All commands below should be run from inside this `backend/` directory.
 
+## Package structure
+
+The backend follows an Onion Architecture under `com.iscram.codesphere`:
+
+- `domain.entity` contains the domain model.
+- `application.port.out` contains persistence ports.
+- `adapter.in.rest` contains REST adapters.
+- `adapter.out.persistence` contains in-memory and MongoDB adapters.
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
@@ -55,16 +64,28 @@ You can then execute your native executable with: `./target/quarkus-app-1.0.0-SN
 
 If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
 
-## MongoDB
+## Storage
 
-This project includes the `quarkus-mongodb-panache` extension. In dev and test mode, Quarkus
-Dev Services automatically starts a MongoDB container when no explicit connection string is
-configured, so no further setup is required locally. For production, configure the connection
-string via an environment variable, e.g.:
+The application uses an in-memory store by default, so it can be started without MongoDB:
 
 ```shell script
+./mvnw quarkus:dev
+```
+
+Data is intentionally lost when the application stops.
+
+### MongoDB (optional)
+
+The `quarkus-mongodb-panache` extension and MongoDB entity are kept ready for use. Set the storage
+mode and connection string when a MongoDB instance is available:
+
+```shell script
+APP_STORAGE=mongodb
 QUARKUS_MONGODB_CONNECTION_STRING=mongodb://<host>:27017
 ```
+
+The MongoDB mode is selected at build time, so restart the application after changing
+`APP_STORAGE`. MongoDB Dev Services remain disabled unless explicitly configured.
 
 ## Related Guides
 

@@ -1,4 +1,4 @@
-package com.codesphere;
+package com.iscram.codesphere.domain.entity;
 
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 

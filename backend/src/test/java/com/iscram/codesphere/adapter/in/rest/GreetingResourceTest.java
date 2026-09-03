@@ -1,4 +1,4 @@
-package com.codesphere;
+package com.iscram.codesphere.adapter.in.rest;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
