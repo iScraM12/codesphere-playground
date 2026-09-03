@@ -1,4 +1,4 @@
-package com.codesphere;
+package com.iscram.codesphere.adapter.in.rest;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

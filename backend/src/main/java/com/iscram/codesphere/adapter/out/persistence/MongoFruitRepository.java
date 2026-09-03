@@ -1,4 +1,4 @@
-package com.codesphere;
+package com.iscram.codesphere.adapter.out.persistence;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,9 +9,12 @@ import org.bson.types.ObjectId;
 
 import io.quarkus.arc.properties.IfBuildProperty;
 
+import com.iscram.codesphere.application.port.out.FruitRepositoryPort;
+import com.iscram.codesphere.domain.entity.Fruit;
+
 @ApplicationScoped
 @IfBuildProperty(name = "app.storage", stringValue = "mongodb")
-public class MongoFruitStore implements FruitStore {
+public class MongoFruitRepository implements FruitRepositoryPort {
 
     @Override
     public List<Fruit> list() {

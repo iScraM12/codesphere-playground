@@ -1,4 +1,4 @@
-package com.codesphere;
+package com.iscram.codesphere.adapter.in.rest;
 
 import java.util.List;
 
@@ -13,6 +13,9 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import com.iscram.codesphere.application.port.out.FruitRepositoryPort;
+import com.iscram.codesphere.domain.entity.Fruit;
+
 /**
  * Sample REST resource showcasing basic CRUD operations.
  */
@@ -22,7 +25,7 @@ import jakarta.ws.rs.core.Response;
 public class FruitResource {
 
     @Inject
-    FruitStore fruitStore;
+    FruitRepositoryPort fruitStore;
 
     @GET
     public List<Fruit> list() {

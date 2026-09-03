@@ -1,9 +1,11 @@
-package com.codesphere;
+package com.iscram.codesphere.application.port.out;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface FruitStore {
+import com.iscram.codesphere.domain.entity.Fruit;
+
+public interface FruitRepositoryPort {
 
     List<Fruit> list();
 

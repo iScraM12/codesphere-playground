@@ -6,6 +6,15 @@ If you want to learn more about Quarkus, please visit its website: <https://quar
 
 All commands below should be run from inside this `backend/` directory.
 
+## Package structure
+
+The backend follows an Onion Architecture under `com.iscram.codesphere`:
+
+- `domain.entity` contains the domain model.
+- `application.port.out` contains persistence ports.
+- `adapter.in.rest` contains REST adapters.
+- `adapter.out.persistence` contains in-memory and MongoDB adapters.
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
