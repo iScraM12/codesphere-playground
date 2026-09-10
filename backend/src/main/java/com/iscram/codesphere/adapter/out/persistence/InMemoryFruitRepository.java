@@ -3,20 +3,16 @@ package com.iscram.codesphere.adapter.out.persistence;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
-import org.bson.types.ObjectId;
-
-import io.quarkus.arc.properties.IfBuildProperty;
-
 import com.iscram.codesphere.application.port.out.FruitRepositoryPort;
 import com.iscram.codesphere.domain.entity.Fruit;
 
 @ApplicationScoped
-@IfBuildProperty(name = "app.storage", stringValue = "memory", enableIfMissing = true)
 public class InMemoryFruitRepository implements FruitRepositoryPort {
 
     private final ConcurrentMap<String, Fruit> fruits = new ConcurrentHashMap<>();
@@ -33,7 +29,7 @@ public class InMemoryFruitRepository implements FruitRepositoryPort {
 
     @Override
     public Fruit create(Fruit fruit) {
-        fruit.id = new ObjectId();
+        fruit.id = UUID.randomUUID().toString();
         fruits.put(fruit.id.toString(), fruit);
         return fruit;
     }
