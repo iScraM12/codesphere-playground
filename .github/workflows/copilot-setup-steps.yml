@@ -24,4 +24,4 @@ jobs:
                   distribution: temurin
                   java-version: "25"
                   cache: maven
-                  cache-dependency-path: /home/runner/work/codesphere-playground/codesphere-playground/backend/pom.xml
+                  cache-dependency-path: backend/pom.xml
