@@ -13,7 +13,7 @@ The backend follows an Onion Architecture under `com.iscram.codesphere`:
 - `domain.entity` contains the domain model.
 - `application.port.out` contains persistence ports.
 - `adapter.in.rest` contains REST adapters.
-- `adapter.out.persistence` contains in-memory and MongoDB adapters.
+- `adapter.out.persistence` contains the in-memory persistence adapter.
 
 ## Running the application in dev mode
 
@@ -66,7 +66,7 @@ If you want to learn more about building native executables, please consult <htt
 
 ## Storage
 
-The application uses an in-memory store by default, so it can be started without MongoDB:
+The application uses an in-memory store, so it can be started without external services:
 
 ```shell script
 ./mvnw quarkus:dev
@@ -74,24 +74,9 @@ The application uses an in-memory store by default, so it can be started without
 
 Data is intentionally lost when the application stops.
 
-### MongoDB (optional)
-
-The `quarkus-mongodb-panache` extension and MongoDB entity are kept ready for use. Set the storage
-mode and connection string when a MongoDB instance is available:
-
-```shell script
-APP_STORAGE=mongodb
-QUARKUS_MONGODB_CONNECTION_STRING=mongodb://<host>:27017
-```
-
-The MongoDB mode is selected at build time, so restart the application after changing
-`APP_STORAGE`. MongoDB Dev Services remain disabled unless explicitly configured.
-
 ## Related Guides
 
 - REST Jackson ([guide](https://quarkus.io/guides/rest#json-serialisation)): Jackson serialization support for Quarkus REST. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it
-- MongoDB with Panache ([guide](https://quarkus.io/guides/mongodb-panache)): Simplify your persistence code for MongoDB via the active record or the repository pattern
-
 ## Provided Code
 
 ### REST

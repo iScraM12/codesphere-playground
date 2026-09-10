@@ -1,11 +1,8 @@
 package com.iscram.codesphere.domain.entity;
 
-import io.quarkus.mongodb.panache.PanacheMongoEntity;
+public class Fruit {
 
-/**
- * Sample MongoDB entity used to demonstrate persistence via Quarkus MongoDB Panache.
- */
-public class Fruit extends PanacheMongoEntity {
+    public String id;
 
     public String name;
 
