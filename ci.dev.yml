@@ -1,0 +1,34 @@
+schemaVersion: v0.4
+prepare:
+  steps:
+    - name: install java and maven with updated nix
+      command: |
+        nix-env -iA nixpkgs.graalvmPackages.graalvm-ce nixpkgs.maven nixpkgs.podman
+    - name: verify installations
+      command: |
+        java -version && mvn -version
+    - name: compile quarkus
+      command: |
+        cd backend && ./mvnw clean compile
+test:
+  steps: []
+run:
+  backend:
+    plan: 302
+    replicas: 1
+    network:
+      ports:
+        - port: 3000
+          isPublic: false
+      paths:
+        - port: 3000
+          path: /
+          stripPath: true
+    env: {}
+    volumeMounts:
+      - name: _workspace
+        mountPath: /home/user/app
+        workspacePath: ""
+    steps:
+      - name: start quarkus app
+        command: cd backend && ./mvnw compile quarkus:dev

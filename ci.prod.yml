@@ -1,0 +1,26 @@
+schemaVersion: v0.2
+prepare:
+  steps:
+    - name: install java and maven with updated nix
+      command: |
+        nix-env -iA nixpkgs.graalvmPackages.graalvm-ce nixpkgs.maven nixpkgs.podman
+    - name: verify installations
+      command: |
+        java -version && mvn -version
+    - name: compile quarkus
+      command: |
+        cd backend && ./mvnw package -Dnative
+test:
+  steps: []
+run:
+  backend:
+    steps:
+      - name: start spring boot application
+        command: >
+          backend/target/quarkus-app-1.0.0-SNAPSHOT-runner -Dquarkus.http.host=0.0.0.0
+    plan: 8
+    replicas: 1
+    isPublic: true
+    network:
+      path: /api
+      stripPath: true
