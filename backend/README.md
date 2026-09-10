@@ -74,19 +74,6 @@ The application uses an in-memory store, so it can be started without external s
 
 Data is intentionally lost when the application stops.
 
-### MongoDB (optional)
-
-The `quarkus-mongodb-panache` extension and MongoDB entity are kept ready for use. Set the storage
-mode and connection string when a MongoDB instance is available:
-
-```shell script
-APP_STORAGE=mongodb
-QUARKUS_MONGODB_CONNECTION_STRING=mongodb://<host>:27017
-```
-
-The MongoDB mode is selected at build time, so restart the application after changing
-`APP_STORAGE`. MongoDB Dev Services remain disabled unless explicitly configured.
-
 ## Related Guides
 
 - REST Jackson ([guide](https://quarkus.io/guides/rest#json-serialisation)): Jackson serialization support for Quarkus REST. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it
