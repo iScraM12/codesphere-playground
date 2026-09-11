@@ -20,6 +20,8 @@ run:
       ports:
         - port: 3000
           isPublic: false
+        - port: 8080
+          isPublic: true
       paths:
         - port: 3000
           path: /
